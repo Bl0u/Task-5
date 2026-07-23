@@ -9,8 +9,6 @@ export function TaskReducer(state, action){
                 console.log("here nigga: " + action.id) ;
                 return task.id !== action.id
             }) ;
-        case "STATUS_TASK":
-            return state.find(task => task.id === action.id) ;
         default:
             return state ;
     }
