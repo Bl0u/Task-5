@@ -6,31 +6,33 @@ export function TaskCard({
   onToggle,
   onDelete,
   status,
+  id,
 }) {
   return (
     <div className="task-card">
-      <input type="checkbox" checked={completed} onChange={onToggle} />
+      <input type="checkbox" checked={completed} />
 
       <label>{text}</label>
 
       <Button
         label="toggle"
         handleClick={() => {
-          onToggle(text);
-          console.log(text);
+          onToggle(id);
+          console.log("text: " + text + "complete: " + completed);
         }}
-      />
+        />
       <Button
         label="remove"
         handleClick={() => {
-          onDelete(text);
-          console.log("deleted: " + text);
+            console.log("deleted id: " + id);
+            onDelete(id);
+            console.log("deleted text: " + text);
         }}
-      />
+        />
 
       <Button handleClick={() => {
-        status(text) ;
-        console.log(typeof completed) ;
+          status(id) ;
+          console.log("text: " + text + "complete: " + completed);
       }} label="status" />
     </div>
   );

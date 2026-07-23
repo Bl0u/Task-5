@@ -15,6 +15,7 @@ export function TaskForm({ onAddTask }) {
 
         <Button
           handleClick={() => {
+            console.log("task: " + task + " typeof" + typeof task) ;
             onAddTask(task) ;
             setTask('') ;
           }}

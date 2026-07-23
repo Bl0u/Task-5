@@ -1,63 +1,46 @@
 import "./App.css";
-import { useContext, useState } from "react";
-import { ThemeContext } from "./Context/ThemeContext";
-import { Button } from "./components/Button.jsx";
+import { useReducer } from "react";
 import TaskForm from "./components/TaskForm.jsx";
 import TaskCard from "./components/TaskCard.jsx";
+import TaskReducer from "./Reducer/TaskReducer.jsx";
 
 function App() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, dispatch] = useReducer(TaskReducer, []) ;
 
-  const addTask = (task) => {
-    setTasks((prev) => [...prev, { task, completed: false }]);
-    console.log(`added a task: ${tasks}`);
+
+  const addTask = (taskText) => {
+    dispatch({type: 'ADD_TASK', text: taskText}) ;
+    console.log(tasks) ;
   };
 
-  const taskStatus = (task) => {
-    tasks?.forEach((element) => {
-      console.log(typeof element.completed) ;
-      if (element.task === task) {
-        console.log(element.task + " " + element.completed);
-      }
-    });
+  const taskStatus = (taskId) => {
+    console.log(tasks.find(task => task.id === taskId)) ;
   };
-  const toggleTask = (task) => {
-    setTasks((prev) => {
-      return prev.map((element) => {
-        console.log(element.task + " " + element.completed);
-        if (element.task === task) {
-          return {
-            ...element,
-            completed: !element.completed,
-          };
-        }
-        console.log(element.task + " " + element.completed);
-
-        return element;
-      });
-    });
+  const toggleTask = (taskId) => {
+    dispatch({type: 'TOGGLE_TASK', id: taskId})
   };
-  const deleteTask = (task) => {
+  const deleteTask = (taskId) => {
     // what to do when the user hit delete task
-    setTasks((prev) => {
-      return prev.filter((element) => element.task !== task);
-    });
+    console.log("lol ? "+ taskId);
+    dispatch({type: "DELETE_TASK", id: taskId}) ;
   };
 
   return (
     <>
       <TaskForm onAddTask={addTask} />
-      {tasks?.map((element, index) => (
-        <TaskCard
-          key={index}
-          completed={element.completed}
-          text={`${element?.task}`}
-          onDelete={deleteTask}
-          onToggle={toggleTask}
-          status={taskStatus}
-        />
-      ))}
+      {tasks?.map((element, index) => {
+        return (
+          <TaskCard
+            key={index}
+            completed={element.completed}
+            text={`${element?.text}`}
+            onDelete={deleteTask}
+            id={element?.id}
+            onToggle={toggleTask}
+            status={taskStatus}
+          />
+        )
+      })}
     </>
   );
 }
