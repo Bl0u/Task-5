@@ -10,7 +10,11 @@ export function TaskCard({
 }) {
   return (
     <div className="task-card">
-      <input type="checkbox" checked={completed} />
+      <input type="checkbox" checked={completed} onChange={() => {
+        onToggle(id) ;
+        console.log("text: " + text + "complete: " + completed);
+
+      }} />
 
       <label>{text}</label>
 
