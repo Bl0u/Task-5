@@ -1,6 +1,6 @@
 export function Button({label, handleClick, optional="", btnType="button"}){
     return (
-        <button className={optional} onClick={handleClick} type={btnType}> {label}</button>
+        <button className={`${optional} bg-sky-500 hover:bg-sky-700 `} onClick={handleClick} type={btnType}> {label}</button>
     )
 }
 

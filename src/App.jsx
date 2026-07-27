@@ -1,9 +1,9 @@
 import "./App.css";
-import TaskBoard from "./components/TaskBoard.jsx";
+import { Paper } from "./components/Paper.jsx";
 function App() {
   return (
     <>
-        <TaskBoard></TaskBoard>
+    <Paper></Paper>
     </>
   );
 }
