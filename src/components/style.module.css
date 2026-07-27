@@ -1,0 +1,15 @@
+.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+    color: red;
+    display: flex ;
+    align-items: center; 
+    gap: 10px ;
+  }
+
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* spacing between items */
+}

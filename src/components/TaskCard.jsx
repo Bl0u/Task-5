@@ -1,5 +1,8 @@
 import Button from "./Button";
 import "./TaskCard.css";
+import styles from "./style.module.css" ;
+
+
 export function TaskCard({
   text,
   completed = false,
@@ -8,8 +11,9 @@ export function TaskCard({
   status,
   id,
 }) {
+
   return (
-    <div className="task-card">
+    <div className={` ${completed ?  styles.completed: styles.card}`}>
       <input type="checkbox" checked={completed} onChange={() => {
         onToggle(id) ;
         console.log("text: " + text + "complete: " + completed);
